@@ -1,98 +1,230 @@
-<article>
-	<header style="background-image: url('https://th.bing.com/th/id/OIP.Ba2p-qkrMQ2dv82bIIvezQHaEK?pid=ImgDet&rs=1');">
-		<div class="upper-header">
-			<div class="mini-title">ICEAYY</div>
-			<div class="date-since">
-				<p><span class="date-value" id="sinceData"></span></p>
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-					<defs>
-						<style>
-							.d {
-								width: 20px;
-								fill: #fff;
-								opacity: .5;
-							}
-						</style>
-					</defs>
-					<path class="d" d="M15,0C6.75,0,0,6.75,0,15s6.75,15,15,15,15-6.75,15-15S23.25,0,15,0Zm7.35,16.65h-7.35c-.83,0-1.5-.67-1.5-1.5V7.8c0-.9,.6-1.5,1.5-1.5s1.5,.6,1.5,1.5v5.85h5.85c.9,0,1.5,.6,1.5,1.5s-.6,1.5-1.5,1.5Z" />
-				</svg>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My Combined File</title>
+		<meta charset="utf-8" />
+		<style>
+			/* CSS Code Here */
+			body {
+				margin: 0;
+				padding: 0;
+			}
+			header {
+				background-size: cover;
+				height: 500px;
+				background-position: center;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				position: relative;
+			}
+			.upper-header {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: flex-start;
+				padding: 20px;
+				width: 100%;
+			}
+			.lower-header {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				margin-top: 50px;
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				background: linear-gradient(
+					to bottom,
+					rgba(0, 0, 0, 0),
+					rgba(0, 0, 0, 0.75)
+				);
+			}
+
+			.title {
+				font-size: 3rem;
+				margin: 0;
+				margin-top: 10px;
+				color: white;
+			}
+
+			.subtitle {
+				font-size: 1.5rem;
+				color: white;
+				margin-top: 20px;
+			}
+
+			.tags-container {
+				margin-top: 20px;
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				align-content: center;
+			}
+
+			.item-title {
+				margin: 0;
+				margin-bottom: 5px;
+				color: white;
+				font-size: 1.2rem;
+			}
+
+			.item-text {
+				margin: 0;
+				margin-left: 10px;
+				color: white;
+				font-size: 1.5rem;
+				font-weight: bold;
+			}
+
+			.summary {
+				display: flex;
+				flex-wrap: wrap;
+				padding: 20px;
+				justify-content: space-evenly;
+			}
+
+			.summary-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				margin: 10px;
+				padding: 20px;
+				background-color: white;
+				border-radius: 10px;
+				box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+				min-width: 250px;
+				max-width: 300px;
+			}
+
+			.gallery {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				gap: 10px;
+				margin-top: 20px;
+				height: 400px;
+				overflow: hidden;
+			}
+
+			.image-item {
+				height: 200px;
+				width: 200px;
+				background-size: cover;
+				background-position: center;
+				border-radius: 5px;
+				cursor: pointer;
+			}
+
+			.mask-off {
+				display: none;
+			}
+
+			.gallery-mask {
+				position: fixed;
+				top: 0;
+				left: 0;
+				background-color: rgba(0, 0, 0, 0.75);
+				width: 100%;
+				height: 100%;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+				z-index: 9999;
+			}
+
+			.mask-image {
+				width: 80%;
+				height: 80%;
+				background-color: #fff;
+				background-size: contain;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+		</style>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+		<script>
+			// JS Code Here
+			// Handle Image Gallery
+			const galleryMask = document.querySelector(".gallery-mask");
+			const maskImage = document.querySelector(".mask-image");
+			const galleryImgs = document.querySelectorAll(".image-item");
+					galleryImgs.forEach((img) => {
+			img.addEventListener("click", () => {
+				maskImage.style.backgroundImage = img.style.backgroundImage;
+				galleryMask.classList.remove("mask-off");
+			});
+		});
+
+		galleryMask.addEventListener("click", () => {
+			galleryMask.classList.add("mask-off");
+		});
+
+		// Set date since
+		const sinceData = document.querySelector("#sinceData");
+		const date = moment("2017-01-01");
+		const diff = moment().diff(date, "years", true);
+		sinceData.textContent = `${diff.toFixed(2)} years`;
+	</script>
+</head>
+<body>
+	<article>
+		<header style="background-image: url('https://th.bing.com/th/id/OIP.Ba2p-qkrMQ2dv82bIIvezQHaEK?pid=ImgDet&rs=1');">
+			<div class="upper-header">
+				<div class="mini-title">ICEAYY</div>
+				<div class="date-since">
+					<p><span class="date-value" id="sinceData"></span></p>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+						<defs>
+							<style>
+								.d {
+									width: 20px;
+									fill: #fff;
+									opacity: 0.5;
+								}
+							</style>
+						</defs>
+						<path
+							class="d"
+							d="M15,0C6.75,0,0,6.75,0,15s6.75,15,15,15,15-6.75,15-15S23.25,0,15,0Zm7.35,16.65h-7.35c-.83,0-1.5-.67-1.5-1.5V7.8c0-.9.6-1.5,1.5-1.5s1.5,.6,1.5,1.5v5.85h5.85c.9,0,1.5,.6,1.5,1.5s-.6,1.5-1.5,1.5Z"
+						/>
+					</svg>
+				</div>
 			</div>
-		</div>
-		<div class="lower-header">
-			<div class="tags-container">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-					<defs>
-						<style>
-							.d {
-								width: 20px;
-								fill: #fff;
-								opacity: .75;
-							}
-						</style>
-					</defs>
-				</svg>
+			<div class="lower-header">
+				<div class="tags-container">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+						<defs>
+							<style>
+								.d {
+									width: 20px;
+									fill: #fff;
+									opacity: 0.75;
+								}
+							</style>
+						</defs>
+						<path
+							class="d"
+							d="M15,0C6.75,0,0,6.75,0,15s6.75,15,15,15,15-6.75,15-15S23.25,0,15,0Zm7.35,16.65h-7.35c-.83,0-1.5-.67-1.5-1.5V7.8c0-.9.6-1.5,1.5-1.5s1.5,.6,1.5,1.5v5.85h5.85c.9,0,1.5,.6,1.5,1.5s-.6,1.5-1.5,1.5Z"
+						/>
+					</svg>
+				</div>
+				<h1 class="title">welcome</h1>
+				<p class="subtitle">i'm iceayy, i make games and write code.</p>
 			</div>
-			<h1 class="title">welcome</h1>
-			<p class="subtitle">i'm iceayy, i make games and write code.</p>
-		</div>
-	</header>
-	<section class="summary">
-		<div class="summary-item">
-			<h5 class="item-title">roblox experience</h5>
-			<p class="item-text"><span class="item-data">4</span> years</p>
-		</div>
-		<div class="summary-item">
-			<h5 class="item-title">languages</h5>
-			<p class="item-text"><span class="item-data">4</span> languages</p>
-		</div>
-		<div class="summary-item">
-			<h5 class="item-title">visits</h5>
-			<p class="item-text"><span class="item-data">1k+ visits lol </span>
-			<p>
-		</div>
-	</section>
-	<section class="main-article">
-		<h4>streaming</h4>
-		<p>sometimes i stream on youtube, you can check it out here: <a href="https://www.youtube.com/channel/UCOIW3KtaXahTpLnWMx1nBDA">https://www.youtube.com/channel/UCOIW3KtaXahTpLnWMx1nBDA</a></p>
-		<p>i stream with my good pals fish and rock usually. i stream mostly on weekends, and play arsenal, nicos nextbots and jtoh usually.</p>
-		<p>please enjoy these silly memes</p>
-		<div class="gallery">
-			<div class="gallery-mask mask-off">
-				<img class="mask-image" src="" alt="" width="200">
+		</header>
+		<section class="summary">
+			<div class="summary-item">
+				<h5 class="item-title">roblox experience</h5>
+				<p class="item-text"><span class="item-data">4</span> years</p>
 			</div>
-			<div class="image-item image-1" alt="" width="200" style="background-image: url('https://media.discordapp.net/attachments/783175289017466882/980583507325751327/284074892_1063338981226588_6872876024985638109_n.jpg');"></div>
-			<div class="image-item image-2" alt="" width="200" style="background-image: url('https://cdn.discordapp.com/attachments/551797187734929418/1098674621676531773/IMG_4999.jpg');"></div>
-			<div class="image-item image-3" alt="" width="200" style="background-image: url('https://cdn.discordapp.com/attachments/551797187734929418/1098516013580034098/Screenshot_20230102_194649_Reddit.png');"></div>
-			<div class="image-item image-4" alt="" width="200" style="background-image: url('https://cdn.discordapp.com/attachments/551797187734929418/1098403825506848828/KsOmLdiG3jfrojw-8demyWSJIUSPU_DNmRcmjnaPTKn7ktCB_W1whkv_VTdGQqdXsGixp-KoYkzYKgs640-nd-v1.png');"></div>
-			<div class="image-item image-5" alt="" width="200" style="background-image: url('https://cdn.discordapp.com/attachments/551797187734929418/1098346741272690729/IMG_3378.png');">
-				<!-- please ignore this thanks </div>
-		</div>
-		<h4></h4>
-		<p></p>
-		<p></p>
-		<p></p>
-		<blockquote class="pullquote">&mdash;</blockquote>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p><p></p>
-		<h4></h4>
-		<p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h4>
-		<p></p>
-		<blockquote class="pullquote">&mdash;</blockquote>
-		<p></p>
-		<p><p></p>
-		<p></p>
-		<p></p>
-		<p></p>
-		<h4></h2>
-			<p></p>
-			<p></p>
-			<p></p>
-			<p></p>-->
-	</section>
-</article>
+			<div class="summary-item">
+				<h5 class="item-title">languages</h5>
+				<p class="item-text"><span class="item-data">4</span> languages</p>
+			</div>
+			<div class="summary-item">
+				<h5 class="item-title">visits</h5>
+				<p class="item-text"><span class="item-data">1k+ visits lol </span>
+				<p> </div> </section> <section class="gallery"> <div class="image-item" style="background-image: url('https://th.bing.com/th/id/OIP.vs-HVE0RPDymf4236MO0RQHaEK?pid=ImgDet&rs=1')" ></div> <div class="image-item" style="background-image: url('https://th.bing.com/th/id/OIP.u1KFTROnPT20hQ4tTEKjGQHaEK?pid=ImgDet&rs=1')" ></div> <div class="image-item" style="background-image: url('https://th.bing.com/th/id/OIP.u1KFTROnPT20hQ4tTEKjGQHaEK?pid=ImgDet&rs=1')" ></div> <div class="image-item" style="background-image: url('https://th.bing.com/th/id/OIP.vs-HVE0RPDymf4236MO0RQHaEK?pid=ImgDet&rs=1')" ></div> </section> <div class="gallery-mask mask-off"> <div class="mask-image"></div> </div> <script src="./script.js"></script> </article> </body> </html>
